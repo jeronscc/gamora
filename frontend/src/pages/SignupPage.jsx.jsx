@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Squares from "../components/Squares.jsx";
+import LandingSpeedDial from "../components/LandingSpeedDial.jsx";
+
 
 export default function SignupPage() {
   const [form, setForm] = useState({
@@ -19,38 +21,49 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    
+    // Background
+    <div className="flex items-center justify-center min-h-screen bg-base-200">
+
+      {/*FAB*/}
+      <LandingSpeedDial />
+
       {/* Parent Container */}
-      <div className="flex w-4/5 max-w-5xl h-[600px] shadow-2xl rounded-md overflow-hidden">
+      <div className="flex w-4/5 max-w-5xl h-[600px] shadow-2xl rounded-md overflow-hidden bg-base-100">
+      
         {/* Left Section */}
-        <div className="relative w-1/2 bg-black text-white flex flex-col items-center justify-center p-10 overflow-hidden">
-          {/* Fullscreen Squares background */}
-          <div className="absolute inset-0">
+        <div className="relative w-1/2 bg-neutral text-neutral-content flex flex-col items-center justify-center p-10 overflow-hidden">
+
+          {/* Square component as background */}
+          <div className="absolute inset-0 bg-white/10 z-10">
+            {/* Squares component */}
             <Squares
               speed={0.5}
               squareSize={40}
-              direction="diagonal" // up, down, left, right, diagonal
+              direction="diagonal"
               borderColor="#14532d"
               hoverFillColor="#22c55e"
             />
           </div>
 
-          {/* Content (above background) */}
-          <div className="relative z-10 flex flex-col items-center">
+          {/* Content */}
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <img src="/gamora_logo.png" alt="Gamora Logo" className="w-20 h-20 mb-4" />
             <h1 className="text-4xl font-bold mb-4">
-              Welcome, <span className="text-green-500">Gamers!</span>
+              Welcome, <span className="text-primary">Gamers!</span>
             </h1>
             <p className="text-gray-400 mb-8">
               Play your day like an adventure.
             </p>
-            <button className="bg-white text-black rounded-full px-6 py-2 font-semibold shadow">
+            <button className="btn btn-outline btn-primary rounded-full">
               Start now
             </button>
           </div>
+          
         </div>
 
-        {/* Right Section */}
-        <div className="w-1/2 flex flex-col items-center justify-center p-10 bg-white">
+        {/* Right Section */} 
+        <div className="w-1/2 flex flex-col items-center justify-center p-10">
           <h2 className="text-2xl font-bold mb-6">SIGN UP</h2>
           <form
             onSubmit={handleSubmit}
@@ -60,9 +73,9 @@ export default function SignupPage() {
               type="text"
               name="displayName"
               placeholder="Enter your display name"
-              value={form.displayName}
+              value={form.displayName} 
               onChange={handleChange}
-              className="border rounded-full px-4 py-2 focus:outline-none focus:ring"
+              className="input input-bordered w-full rounded-full" 
             />
             <input
               type="text"
@@ -70,41 +83,33 @@ export default function SignupPage() {
               placeholder="Enter your username"
               value={form.username}
               onChange={handleChange}
-              className="border rounded-full px-4 py-2 focus:outline-none focus:ring"
+              className="input input-bordered w-full rounded-full" 
             />
             <div className="flex space-x-2">
               <input
                 type="password"
-                name="password"
+                name="password" 
                 placeholder="Password"
                 value={form.password}
                 onChange={handleChange}
-                className="border rounded-full px-4 py-2 w-1/2 focus:outline-none focus:ring"
+                className="input input-bordered w-1/2 rounded-full"
               />
               <input
-                type="password"
+                type="password" 
                 name="confirmPassword"
-                placeholder="Confirm Password"
+                placeholder="Confirm"
                 value={form.confirmPassword}
-                onChange={handleChange}
-                className="border rounded-full px-4 py-2 w-1/2 focus:outline-none focus:ring"
+                onChange={handleChange} 
+                className="input input-bordered w-1/2 rounded-full"
               />
             </div>
-            <button
-              type="submit"
-              className="bg-black text-white py-2 rounded-md font-semibold hover:bg-gray-800"
-            >
+            <button type="submit" className="btn btn-primary w-full"> 
               Create Account
             </button>
-            <div className="flex items-center justify-center space-x-2 text-gray-400">
-              <span className="flex-grow border-t"></span>
-              <span>Or</span>
-              <span className="flex-grow border-t"></span>
-            </div>
-            <button
-              type="button"
-              className="bg-gray-200 py-2 rounded-md font-semibold hover:bg-gray-300"
-            >
+
+            <div className="divider text-gray-400">Or</div>
+
+            <button type="button" className="btn btn-outline w-full">
               Log in
             </button>
           </form>
