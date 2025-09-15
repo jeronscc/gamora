@@ -21,7 +21,7 @@ export const createUser = async (req, res) => {
       return res.status(400).json({ message: "All fields are required." });
     }
 
-    // validate if username is not unique
+    // validate if username is unique
     const existingUser = await User.findOne({ username });
     if (existingUser) {
       return res.status(409).json({ message: "Username already taken." });
@@ -39,7 +39,11 @@ export const createUser = async (req, res) => {
 
 		// return status and response without the hashed password
 		const { password: _, ...data} = user.toObject();
-    res.status(201).json(data);
+
+    // count total user
+    const totalUsers = await User.countDocuments();
+    res.status(201).json({data, totalUsers});
+
   } catch (error) {
     console.error(`Error: ${error.message}`);
     res.status(500).json({ message: "Internal server error" });
