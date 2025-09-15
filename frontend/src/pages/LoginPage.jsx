@@ -74,6 +74,7 @@ export default function LoginPage() {
               type="text"
               name="username"
               placeholder="Enter your username"
+              required
               value={form.username}
               onChange={handleChange}
               className="input input-bordered w-full rounded-full" 
@@ -83,6 +84,7 @@ export default function LoginPage() {
                 type="password"
                 name="password" 
                 placeholder="Password"
+                required
                 value={form.password}
                 onChange={handleChange}
                 className="input input-bordered w-full rounded-full"
